@@ -1,38 +1,695 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Header Styles */
+.app-header {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+/* Search Bar Styles */
+.search-bar {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.search-icon {
+  padding: 0 1rem;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  padding: 1rem 0;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  padding: 0 1rem;
+  color: #999;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.clear-button:hover {
+  color: #666;
+}
+
+/* Whisky List Styles */
+.whisky-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.whisky-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+}
+
+.whisky-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.whisky-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f0f0f0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.whisky-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.whisky-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.whisky-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.whisky-brand {
+  color: #8B4513;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.whisky-details {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.whisky-type,
+.whisky-age,
+.whisky-abv {
+  background: #e9ecef;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.whisky-origin {
+  color: #666;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.whisky-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #8B4513;
+  margin-bottom: 0.8rem;
+}
+
+.whisky-description {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* No Results */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.no-results button {
+  background: #8B4513;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* Whisky Detail Page */
+.detail-header {
+  padding: 1rem 2rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  background: none;
+  border: 1px solid #8B4513;
+  color: #8B4513;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: #8B4513;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.detail-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.whisky-hero {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.whisky-image-large {
+  width: 100%;
+  height: 400px;
+  background: #f0f0f0;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whisky-image-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.whisky-info-detailed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.whisky-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.whisky-brand-large {
+  font-size: 1.3rem;
+  color: #8B4513;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.whisky-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.spec-item label {
+  font-weight: 600;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.spec-item span {
+  font-weight: 600;
+  color: #333;
+}
+
+.spec-item .price {
+  color: #8B4513;
+  font-size: 1.2rem;
+}
+
+.spec-item .rating {
+  color: #f39c12;
+}
+
+/* Sections */
+.whisky-description,
+.tasting-notes,
+.pairing-section,
+.review-section {
+  margin-bottom: 3rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.whisky-description h2,
+.tasting-notes h2,
+.pairing-section h2,
+.review-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.note-item {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.note-item h3 {
+  color: #8B4513;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Pairing Section */
+.pairing-intro {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.pairing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.pairing-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.pairing-card:hover {
+  transform: translateY(-2px);
+}
+
+.pairing-image {
+  width: 100%;
+  height: 150px;
+  background: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pairing-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pairing-info {
+  padding: 1.5rem;
+}
+
+.pairing-info h3 {
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.food-category {
+  background: #8B4513;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pairing-info p {
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Review Section */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.add-review-btn {
+  background: #8B4513;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.add-review-btn:hover {
+  background: #6d3410;
+}
+
+.review-summary {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.average-rating {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rating-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f39c12;
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.stars.interactive .star {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.stars.interactive .star:hover {
+  transform: scale(1.2);
+}
+
+.star.filled {
+  opacity: 1;
+}
+
+.star:not(.filled) {
+  opacity: 0.3;
+}
+
+.review-count {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Add Review Form */
+.add-review-form {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.add-review-form h3 {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #8B4513;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.submit-btn {
+  background: #8B4513;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cancel-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Reviews List */
+.review-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.review-header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.reviewer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.review-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.review-comment {
+  color: #333;
+  line-height: 1.6;
+}
+
+.no-reviews,
+.no-pairings {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  padding: 2rem;
+}
+
+.not-found {
+  text-align: center;
+  padding: 3rem;
+}
+
+.not-found h2 {
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+.not-found button {
+  background: #8B4513;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 1.5rem 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .whisky-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .whisky-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .whisky-title {
+    font-size: 2rem;
+  }
+
+  .whisky-specs {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pairing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .review-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .detail-content {
+    padding: 1rem;
+  }
+
+  .detail-header {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-input-container {
+    border-radius: 25px;
+  }
+
+  .whisky-card {
+    margin: 0 0.5rem;
+  }
+
+  .whisky-title {
+    font-size: 1.5rem;
+  }
+
+  .average-rating {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .whisky-hero {
+    gap: 1rem;
+  }
+
+  .whisky-image-large {
+    height: 250px;
   }
 }
